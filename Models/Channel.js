@@ -1,11 +1,9 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db");
 
-const ChannelSchema = new mongoose.Schema({
-  college: { type: mongoose.Schema.Types.ObjectId, ref: 'College', required: true },
-  name: { type: String, required: true },
-  isAnnouncement: { type: Boolean, default: false }, // read-only for students if true
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  createdAt: { type: Date, default: Date.now }
+const Channel = sequelize.define("Channel", {
+  name: { type: DataTypes.STRING, allowNull: false },
+  isAnnouncement: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
-module.exports = mongoose.model('Channel', ChannelSchema);
+module.exports = Channel;
