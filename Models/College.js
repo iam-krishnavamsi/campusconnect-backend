@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db");
 
-const CollegeSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  code: { type: String, required: true, unique: true }, // e.g., NITW2025
-  createdAt: { type: Date, default: Date.now }
+const College = sequelize.define("College", {
+  name: { type: DataTypes.STRING, allowNull: false },
+  code: { type: DataTypes.STRING, allowNull: false, unique: true },
 });
 
-module.exports = mongoose.model('College', CollegeSchema);
+module.exports = College;
