@@ -1,11 +1,8 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db");
 
-const MessageSchema = new mongoose.Schema({
-  channel: { type: mongoose.Schema.Types.ObjectId, ref: 'Channel', required: true },
-  sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  text: { type: String },
-  createdAt: { type: Date, default: Date.now },
-  meta: { type: Object } // for attachments, etc.
+const Message = sequelize.define("Message", {
+  text: { type: DataTypes.STRING },
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+module.exports = Message;
